@@ -16,7 +16,7 @@ const Header = () => {
 
             <div className=' flex flex-wrap justify-center gap-4'>
                 <div className='self-center flex flex-row gap-2'>
-                    <Link href={'/'}>
+                    <Link href={'/home'}>
                         <h1 className=' text-2xl font-semibold'>Home</h1>
                     </Link>
                     <Link className=' self-center text-2xl font-semibold' href={'/'}>

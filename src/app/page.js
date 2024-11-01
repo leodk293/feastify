@@ -140,7 +140,7 @@ export default function Home() {
         {meals.loading === true ?
           <p className=" text-orange-800 text-3xl font-bold text-center mt-10">Loading...</p> :
           meals.error === true ?
-            <p className=" text-red-800 text-3xl font-bold text-center mt-10">Something went wrong, refresh the page</p> :
+            <p className=" text-red-800 text-3xl font-bold text-center mt-10">Something went wrong, check that you are connected</p> :
 
             <div
               className=" flex flex-wrap justify-center gap-5"
