@@ -4,7 +4,8 @@ import ramen from '../../public/ramen.png'
 import { Twitter, Facebook, Linkedin, Search } from 'lucide-react'
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
+import Faq from "./components/faq/Faq";
 
 export default function Home() {
   const router = useRouter();
@@ -100,13 +101,13 @@ export default function Home() {
       <div className=" flex flex-col gap-2 mt-10">
         <h1 className="text-2xl text-orange-950 font-bold">Follow us :</h1>
         <div className=" flex flex-row gap-2">
-          <Link className=" border border-transparent p-2 rounded-[5px] bg-orange-900" href={'/'}>
+          <Link className=" border border-transparent p-2 rounded-[5px] bg-orange-900 hover:bg-orange-800 duration-200" href={'/'}>
             <Twitter color='#fff' size={30} strokeWidth={1.5} />
           </Link>
-          <Link className=" border border-transparent p-2 rounded-[5px] bg-orange-900" href={'/'}>
+          <Link className=" border border-transparent p-2 rounded-[5px] bg-orange-900 hover:bg-orange-800 duration-200" href={'/'}>
             <Facebook color='#fff' size={30} strokeWidth={1.5} />
           </Link>
-          <Link className=" border border-transparent p-2 rounded-[5px] bg-orange-900" href={'/'}>
+          <Link className=" border border-transparent p-2 rounded-[5px] bg-orange-900 hover:bg-orange-800 duration-200" href={'/'}>
             <Linkedin color='#fff' size={30} strokeWidth={1.5} />
           </Link>
         </div>
@@ -124,7 +125,7 @@ export default function Home() {
           onChange={(event) => setMealName(event.target.value)}
           value={mealName}
         />
-        
+
         <button
           style={{ borderRadius: "0 5px 5px 0" }}
           className=" border-2 border-orange-900 bg-orange-800 p-1 hover:bg-red-900 duration-300">
@@ -132,10 +133,11 @@ export default function Home() {
         </button>
       </form>
 
-      <div className=" hidden md:w-[65rem] h-[1px] rounded-[25px] bg-red-950 mt-10 translate-y-5 md:block"></div>
+      <h1 className=" text-3xl text-center mt-[80px] font-extrabold text-red-950">Discover some tasty meals 😋</h1>
+
+      <div className=" hidden md:w-[68rem] h-[1px] rounded-[25px] bg-red-950 mt-5 md:block"></div>
 
       <div className=" mt-10 flex flex-col gap-5 w-auto items-center md:w-[70rem]">
-        <h1 className=" text-3xl font-extrabold text-red-950">Discover some tasty meals</h1>
 
         {meals.loading === true ?
           <p className=" text-orange-800 text-3xl font-bold text-center mt-10">Loading...</p> :
@@ -147,28 +149,36 @@ export default function Home() {
             >
               {
                 meals.data && meals.data.map((meal) => (
-                  <div
-                    className=" flex flex-col gap-2"
-                    key={meal.idMeal}
-                  >
-                    <Image
-                      src={meal.strMealThumb}
-                      alt={meal.strMeal}
-                      width={200}
-                      height={100}
-                      className=" border border-orange-950 rounded-[5px] object-cover"
+                  <Link href={`/recipes/${meal.idMeal}`} key={meal.idMeal}>
+                    <div
+                      className=" flex flex-col gap-2 hover:brightness-75 duration-200"
+                    >
+                      <Image
+                        src={meal.strMealThumb}
+                        alt={meal.strMeal}
+                        width={200}
+                        height={100}
+                        className=" border border-orange-950 rounded-[5px] object-cover"
 
-                    />
+                      />
 
-                    <p className="w-[200px] text-[17px] font-semibold">{meal.strMeal}</p>
+                      <p className="w-[200px] text-[17px] font-semibold">{meal.strMeal}</p>
 
-                  </div>
+                    </div>
+                  </Link>
                 ))
               }
             </div>
 
         }
 
+      </div>
+
+      <div className=" hidden md:w-[68rem] h-[1px] rounded-[25px] bg-red-950 mt-2 translate-y-5 md:block"></div>
+
+      <div className=" flex flex-col mt-[80px] gap-5">
+        <h1 className=" text-4xl font-extrabold">FAQ</h1>
+        <Faq />
       </div>
 
     </main>

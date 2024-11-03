@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function SearchResults() {
   const searchParams = useSearchParams();
@@ -74,16 +75,18 @@ export default function SearchResults() {
               <div className="flex flex-wrap w-auto justify-center gap-5 mt-10 md:w-[70rem]">
 
                 {meals.data.map((meal) => (
-                  <div className="flex flex-col gap-2" key={meal.idMeal}>
-                    <Image
-                      src={meal.strMealThumb}
-                      alt={meal.strMeal}
-                      width={200}
-                      height={100}
-                      className="border border-orange-950 rounded-[5px] object-cover"
-                    />
-                    <p className="w-[200px] text-[17px] font-semibold">{meal.strMeal}</p>
-                  </div>
+                  <Link href={`/recipes/${meal.idMeal}`} key={meal.idMeal}>
+                    <div className="flex flex-col gap-2 hover:brightness-75 duration-200">
+                      <Image
+                        src={meal.strMealThumb}
+                        alt={meal.strMeal}
+                        width={200}
+                        height={100}
+                        className="border border-orange-950 rounded-[5px] object-cover"
+                      />
+                      <p className="w-[200px] text-[17px] font-semibold">{meal.strMeal}</p>
+                    </div>
+                  </Link>
                 ))}
 
               </div>

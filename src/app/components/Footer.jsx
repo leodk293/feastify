@@ -13,15 +13,18 @@ const Footer = () => {
     ]
 
     return (
-        <footer className=' border border-transparent mt-[80px] bg-[#ffa60008] px-3 shadow py-5 flex flex-col items-center gap-5 relative bottom-0 w-full md:px-0'>
+        <footer
+        style={{boxShadow:"0 -1px 2px #00000012"}}
+            className=' border border-transparent mt-[80px] bg-[#ffa60008] px-3 py-5 flex flex-col items-center gap-5 relative bottom-0 w-full md:px-0'
+        >
             <div className=' flex flex-col gap-2'>
                 <h1 className=' font-bold text-xl'>Browse By Name</h1>
                 <div className=' flex flex-wrap gap-2'>
                     {letterTab.map((letter) => (
                         <Link
-                            className=' font-bold text-xl border border-transparent px-2 text-orange-950 rounded-[5px] bg-orange-200'
+                            className=' font-bold text-xl border border-transparent px-2 text-orange-950 rounded-[5px] bg-orange-200 hover:translate-y-[-5px] duration-200'
                             key={nanoid(10)}
-                            href={'/'}
+                            href={`/browse/${letter}`}
                         >
                             {letter}
                         </Link>

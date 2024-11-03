@@ -1,75 +1,85 @@
-'use client';
-import React from 'react'
-import { useState, useEffect } from 'react';
+'use client'
+import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Page = () => {
-    /*const [categories, setCategories] = useState({
-        error: false,
-        data: undefined
-    })
-
-    const [areaa, setAreas] = useState({
-        error: true,
-        data: undefined
-    })
-
-    const [Ingrdients, setIngredients] = useState({
-        error:true,
-        data:undefined
-    })*/
-
     const [areas, setAreas] = useState([]);
     const [categories, setCategories] = useState([]);
     const [ingredients, setIngredients] = useState([]);
+    const [filteredMeals, setFilteredMeals] = useState({
+        error: false,
+        data: undefined,
+        loading: false,
+    });
+
+    const [target, setTarget] = useState('');
 
     async function fetchData(api_url, api_key) {
         try {
             const response = await fetch(api_url);
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const result = await response.json();
-            const arrayOfValues = result.meals.map(obj => obj[api_key]);
-
-            return arrayOfValues;
+            return result.meals.map((obj) => obj[api_key]);
         } catch (error) {
             console.error('Fetch error:', error.message);
             return [];
         }
     }
 
-    /*const areas_variables = fetchData('https://www.themealdb.com/api/json/v1/1/list.php?a=list', 'strArea');
-    const categories_variables = fetchData('https://www.themealdb.com/api/json/v1/1/list.php?c=list', 'strCategory');
-    const ingredients_variables = fetchData('https://www.themealdb.com/api/json/v1/1/list.php?i=list', 'strIngredient');
-
-    useEffect(() => {
-        setAreas(areas_variables);
-        setCategories(categories_variables);
-        setIngredients(ingredients_variables)
-    }, [])*/
-
-    const [filteredMeals, setFilteredMeals] = useState({
-        error: false,
-        data: undefined,
-        loading: false
-    })
-
     function handleError() {
         setFilteredMeals({
             error: true,
             data: undefined,
-            loading: false
-        })
+            loading: false,
+        });
     }
 
     function setLoader() {
         setFilteredMeals({
             error: false,
             data: undefined,
-            loading: true
-        })
+            loading: true,
+        });
+    }
+
+    async function fetchFilteredMealsByCategory(category) {
+        if (!category) return;
+        setTarget(category);
+        setLoader();
+        try {
+            const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
+            if (!response.ok) throw new Error(`An error has occurred: ${response.status}`);
+            const result = await response.json();
+            setFilteredMeals({
+                error: false,
+                data: result.meals,
+                loading: false,
+            });
+        } catch (error) {
+            handleError();
+            console.error(error.message);
+        }
+    }
+
+    async function fetchFilteredMealsByArea(area) {
+        if (!area) return;
+        setTarget(area);
+        setLoader();
+        try {
+            const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`);
+            if (!response.ok) throw new Error(`An error has occurred: ${response.status}`);
+            const result = await response.json();
+            setFilteredMeals({
+                error: false,
+                data: result.meals,
+                loading: false,
+            });
+        } catch (error) {
+            handleError();
+            console.error(error.message);
+        }
     }
 
     useEffect(() => {
@@ -78,104 +88,74 @@ const Page = () => {
         fetchData('https://www.themealdb.com/api/json/v1/1/list.php?i=list', 'strIngredient').then(setIngredients);
     }, []);
 
-    async function fetchFilteredMealsByCategory(event) {
-        setLoader();
-        try {
-            const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${event.target.value}`)
-            if (!response.ok) {
-                throw new Error(`An error has occured : ${response.status}`)
-            }
-
-            const result = await response.json();
-            setFilteredMeals({
-                error: false,
-                data: result.meals,
-                loading: false
-            })
-        }
-        catch (error) {
-            handleError();
-            console.log(error.message)
-        }
-    }
-
-    async function fetchFilteredMealsByArea(event) {
-        setLoader();
-        try {
-            const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${event.target.value}`)
-            if (!response.ok) {
-                throw new Error(`An error has occured : ${response.status}`)
-            }
-
-            const result = await response.json();
-            setFilteredMeals({
-                error: false,
-                data: result.meals,
-                loading: false
-            })
-        }
-        catch (error) {
-            handleError();
-            console.log(error.message)
-        }
-    }
+    useEffect(() => {
+        if (categories.length > 0) fetchFilteredMealsByCategory(categories[0]);
+    }, [categories]);
 
     return (
-        <main className=' flex flex-col items-center'>
-            <div className=' flex flex-col gap-3'>
-                <h1>Filter Meals:</h1>
-                <div className=' flex flex-wrap gap-5 justify-center'>
+        <main className="flex flex-col items-center mx-3 md:mx-0">
+            <div className="flex flex-col gap-3">
 
-                    <div className=' flex flex-row gap-2'>
-                        <p className=' text-xl'>By Category</p>
-                        <select onChange={fetchFilteredMealsByCategory} name="" id="">
-                            {categories.map((category) => (
-                                <option
-                                    className=' text-[17px] font-semibold outline-none border border-transparent px-5 py-2 bg-[#ffa60008] text-white'
-                                    value={category}
-                                    key={nanoid(10)}
-                                >
-                                    {category}
-                                </option>
-                            ))}
+                <div className=' flex flex-wrap gap-10'>
 
-                        </select>
-                    </div>
+                    <h1 className=' text-2xl self-center font-bold'>Filter Meals :</h1>
 
-                    <div className=' flex flex-row gap-2'>
-                        <p className=' text-xl'>By Area</p>
-                        <select onChange={fetchFilteredMealsByArea} name="" id="">
-                            {areas.map((area) => (
-                                <option
-                                    className=' text-[17px] font-semibold outline-none border border-transparent px-5 py-2 bg-[#ffa60008] text-white'
-                                    value={area}
-                                    key={nanoid(10)}
-                                >
-                                    {area}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
+                    <select
+                        className="text-[17px] font-semibold outline-none border border-transparent rounded-[5px] cursor-pointer px-5 py-2 bg-orange-900 text-white"
+                        onChange={(e) => fetchFilteredMealsByCategory(e.target.value)}
+                    >
+                        <option value="">Select a category</option>
+                        {categories.map((category) => (
+                            <option value={category} key={nanoid(10)}>
+                                {category}
+                            </option>
+                        ))}
+                    </select>
 
-                    {/* <div className=' flex flex-row gap-2'>
-                        <p>By Main Ingrdient</p>
-                        <select name="" id="">
-                            {ingredients.map((ingredient) => (
-                                <option
-                                    value={ingredient}
-                                    key={nanoid(10)}
-                                >
-                                    {ingredient}
-                                </option>
-                            ))}
-                        </select>
-                    </div> */}
+                    <select
+                        className="text-[17px] font-semibold outline-none border border-transparent rounded-[5px] cursor-pointer px-5 py-2 bg-orange-900 text-white"
+                        onChange={(e) => fetchFilteredMealsByArea(e.target.value)}
+                    >
+                        <option value="">Select an area</option>
+                        {areas.map((area) => (
+                            <option value={area} key={nanoid(10)}>
+                                {area}
+                            </option>
+                        ))}
+                    </select>
 
                 </div>
+
+
+                <div className=' mt-10 flex flex-col gap-2'>
+                    <h1 className=' text-4xl text-center font-bold text-orange-950 md:text-left'>{target}</h1>
+                    <span className='w-[69rem] h-[1px] rounded-[25px] bg-orange-950 hidden md:block'></span>
+                </div>
+                {filteredMeals.error ? (
+                    <p className='text-red-800 text-3xl font-bold text-center mt-10'>Something went wrong, try again</p>
+                ) : filteredMeals.loading ? (
+                    <p className="text-orange-800 mt-5 text-3xl font-bold text-center">Loading...</p>
+                ) : (
+                    <div className="flex flex-wrap mt-5 w-auto justify-center gap-5 md:w-[70rem]">
+                        {filteredMeals.data?.map((meal) => (
+                            <Link href={`/recipes/${meal.idMeal}`} key={meal.idMeal}>
+                                <div className="flex flex-col gap-2 hover:brightness-75 duration-200">
+                                    <Image
+                                        src={meal.strMealThumb}
+                                        width={200}
+                                        height={100}
+                                        alt={meal.strMeal}
+                                        className="border border-orange-950 rounded-[5px] object-cover"
+                                    />
+                                    <p className='w-[200px] text-[17px] font-semibold'>{meal.strMeal}</p>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                )}
             </div>
-
         </main>
-    )
-}
+    );
+};
 
-export default Page
+export default Page;
