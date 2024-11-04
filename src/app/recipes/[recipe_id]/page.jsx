@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import ReadMore from '@/app/components/readMore';
+import ReadMore from '../../components/readMore';
 import { Youtube } from 'lucide-react';
 import { nanoid } from 'nanoid';
 
@@ -130,7 +130,7 @@ export default function Page({ params }) {
 
                 <div className='mt-10 flex flex-col gap-5'>
                   <div className=' flex flex-col gap-2'>
-                    <h1 className='text-2xl text-red-950 font-bold text-center md:text-left'>{mealsInfos.data.strMeal}&apos;s Ingredients <span className=' hidden md:inline'>🫑</span></h1>
+                    <h1 className='text-2xl text-red-950 font-bold text-center md:text-left'>{mealsInfos.data.strMeal}&apos;s Ingredients <span className=' hidden md:inline'>🌶️</span></h1>
                     <span className=' hidden w-[60rem] h-[1px] rounded-[25px] bg-red-950 md:block'></span>
                   </div>
                   <div className='w-auto flex flex-wrap justify-center gap-5 md:w-[60rem] md:justify-start'>

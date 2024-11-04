@@ -28,10 +28,6 @@ const Page = ({ params }) => {
 
     const [letterId, setLetterId] = useState('');
 
-    /*useEffect(() => {
-        setLetterId(params.id); // Correct way to access params.id directly
-    }, [params]);*/
-
     useEffect(() => {
         params.then((resolvedParams) => setLetterId(resolvedParams.id));
     }, [params]);
@@ -82,8 +78,11 @@ const Page = ({ params }) => {
                         </div>
                         <div className="flex flex-wrap mt-5 w-auto justify-center gap-5 md:w-[70rem]">
                             {browsedMeals.data.map((meal) => (
-                                <Link href={`/recipes/${meal.idMeal}`} key={meal.idMeal}>
-                                    <div className="flex flex-col gap-2">
+                                <Link
+                                    href={`/recipes/${meal.idMeal}`}
+                                    key={meal.idMeal}
+                                >
+                                    <div className="flex flex-col gap-2 hover:brightness-75 duration-200">
                                         <Image
                                             src={meal.strMealThumb}
                                             width={200}
