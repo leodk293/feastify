@@ -10,14 +10,27 @@ import Faq from "./components/faq/Faq";
 export default function Home() {
   const router = useRouter();
   const [mealName, setMealName] = useState("");
+  const [ingredientName, setIngredientName] = useState("");
 
-  const handleSubmit = (event) => {
+  const [ingredients, setIngredients] = useState([]);
+
+  const handleMealSubmit = (event) => {
     event.preventDefault();
     if (mealName.trim()) {
-      router.push(`/search?meal=${encodeURIComponent(mealName)}`);
+      router.push(`/search-meal?meal=${encodeURIComponent(mealName)}`);
       setMealName('');
     }
   };
+
+  const handleIngredientSubmit = (event) => {
+    event.preventDefault();
+    if (ingredientName.trim()) {
+      router.push(`/search-ingredient?ingredient=${encodeURIComponent(ingredientName)}`);
+      setIngredientName('');
+    }
+  }
+
+
 
   const [meals, setMeals] = useState({
     error: false,
@@ -62,8 +75,31 @@ export default function Home() {
     }
   }
 
+  async function fecthIngredientsList() {
+    try {
+      const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list');
+      if (!response.ok) {
+        throw new Error(`An error has occured : ${response.status}`)
+      }
+
+      const result = await response.json();
+      setIngredients(result.meals);
+
+    }
+    catch (error) {
+      console.log(error.message);
+      setIngredients([]);
+    }
+
+  }
+
+  function displayIngredientsImage(ingredient) {
+    return `https://www.themealdb.com/images/ingredients/${ingredient}.png`
+  }
+
   useEffect(() => {
     fetchMeals();
+    fecthIngredientsList();
   }, []);
 
   return (
@@ -113,25 +149,67 @@ export default function Home() {
         </div>
       </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className=" mt-10 flex flex-row"
-      >
-        <input
-          style={{ borderRadius: "5px 0 0 5px" }}
-          className=" outline-none bg-transparent w-auto border font-bold text-orange-800 border-r-transparent border-orange-800 p-2 text-xl placeholder:text-orange-950 md:w-[25rem]"
-          type="text"
-          placeholder="Search for a Meal..."
-          onChange={(event) => setMealName(event.target.value)}
-          value={mealName}
-        />
+      <div className=" flex flex-col">
 
-        <button
-          style={{ borderRadius: "0 5px 5px 0" }}
-          className=" border-2 border-orange-900 bg-orange-800 p-1 hover:bg-red-900 duration-300">
-          <Search color="#fff" size={28} strokeWidth={1.75} />
-        </button>
-      </form>
+        <form
+          onSubmit={handleMealSubmit}
+          className=" mt-10 flex flex-row"
+        >
+          <input
+            required
+            style={{ borderRadius: "5px 0 0 5px" }}
+            className=" outline-none bg-transparent capitalize w-auto border font-bold text-orange-800 border-r-transparent border-orange-800 p-2 text-xl placeholder:text-orange-950 md:w-[25rem]"
+            type="text"
+            placeholder="Search for a Meal..."
+            onChange={(event) => setMealName(event.target.value)}
+            value={mealName}
+          />
+
+          <button
+            style={{ borderRadius: "0 5px 5px 0" }}
+            className=" border-2 border-orange-900 bg-orange-800 p-1 hover:bg-red-900 duration-300">
+            <Search color="#fff" size={28} strokeWidth={1.75} />
+          </button>
+        </form>
+
+        <div className=" translate-y-5 self-center flex flex-row gap-2">
+          <span className=" hidden w-[200px] h-[1px] bg-black self-center md:block"></span>
+          <span className=" self-center font-bold text-xl">or</span>
+          <span className=" hidden w-[200px] h-[1px] bg-black self-center md:block"></span>
+        </div>
+
+        <form
+          onSubmit={handleIngredientSubmit}
+          className=" mt-10 flex flex-row"
+        >
+          <input
+            required
+            list='ingredientslist'
+            style={{ borderRadius: "5px 0 0 5px" }}
+            className=" outline-none bg-transparent capitalize w-auto border font-bold text-orange-800 border-r-transparent border-orange-800 p-2 text-xl placeholder:text-orange-950 md:w-[25rem]"
+            type="text"
+            placeholder="Enter an main ingredient..."
+            onChange={(event) => setIngredientName(event.target.value)}
+            value={ingredientName}
+          />
+
+          <datalist id="ingredientslist">
+            {Array.isArray(ingredients) && ingredients.map((ingredient) => (
+              <option
+                value={ingredient.strIngredient}
+                key={ingredient.idIngredient}
+              />
+            ))}
+          </datalist>
+
+          <button
+            style={{ borderRadius: "0 5px 5px 0" }}
+            className=" border-2 border-orange-900 bg-orange-800 p-1 hover:bg-red-900 duration-300">
+            <Search color="#fff" size={28} strokeWidth={1.75} />
+          </button>
+        </form>
+
+      </div>
 
       <h1 className=" text-3xl text-center mt-[80px] font-extrabold text-red-950">Discover some tasty meals 😋</h1>
 
@@ -176,10 +254,58 @@ export default function Home() {
 
       <div className=" hidden md:w-[68rem] h-[1px] rounded-[25px] bg-red-950 mt-2 translate-y-5 md:block"></div>
 
+      <div className=" mt-[120px] flex flex-col gap-5 w-auto items-center md:w-[70rem]">
+
+        <h1 className=" font-extrabold text-red-950 text-3xl text-center">Browse among severals ingredients</h1>
+
+        <div className="flex flex-wrap justify-center gap-5">
+
+          {ingredients ?
+            ingredients.slice(0, 10).map((ingredient) => (
+              <Link
+                href={`/search-ingredient?ingredient=${encodeURIComponent(ingredient.strIngredient)}`}
+                key={ingredient.idIngredient}
+                className=" hover:translate-y-[-5px] duration-200"
+              >
+                <div
+                  className=" flex flex-col items-center gap-3 border border-transparent px-5 py-2 rounded-[5px] shadow bg-[#f8deac2b] "
+                >
+                  <Image
+                    src={displayIngredientsImage(ingredient.strIngredient)}
+                    alt={ingredient.strIngredient}
+                    width={150}
+                    height={100}
+                  />
+
+                  <p className="text-[16px] text-center font-semibold ">{ingredient.strIngredient}</p>
+
+                </div>
+              </Link>
+            ))
+            :
+            <p className="text-red-800 text-3xl font-bold text-center mt-10">Something went wrong</p>
+
+          }
+
+        </div>
+
+        <Link href={'/list-ingredients'}>
+          <button
+            className=" outline-none mt-2 text-red-800 text-xl font-bold rounded-[5px] shadow px-5 py-2 border border-transparent bg-orange-100 hover:translate-x-2 duration-200">
+            Click here for more
+          </button>
+        </Link>
+
+      </div>
+
       <div className=" flex flex-col mt-[80px] gap-5">
         <h1 className=" text-4xl font-extrabold">FAQ</h1>
         <Faq />
       </div>
+
+      <h1 className=" mt-[100px] font-bold text-center text-[16px] md:text-2xl">
+        <span>🍔 Total Meals : 303</span> / <span>🥩 Total Ingredients: 575</span>
+      </h1>
 
     </main>
   );

@@ -18,7 +18,7 @@ const Footer = () => {
             className=' border border-transparent mt-[80px] bg-[#ffa60008] px-3 py-5 flex flex-col items-center gap-5 relative bottom-0 w-full md:px-0'
         >
             <div className=' flex flex-col gap-2'>
-                <h1 className=' font-bold text-xl'>Browse By Name</h1>
+                <h1 className=' font-bold text-xl'>Browse Meals By Name</h1>
                 <div className=' flex flex-wrap gap-2'>
                     {letterTab.map((letter) => (
                         <Link
@@ -46,8 +46,8 @@ const Footer = () => {
 
 
                 <div className=' self-center flex flex-row gap-5'>
-                    <Link href={'/'}>Contact</Link>
-                    <Link href={'/'}>About</Link>
+                    <Link href={'/contact'}>Contact</Link>
+                    <Link href={'/about'}>About</Link>
                 </div>
 
 

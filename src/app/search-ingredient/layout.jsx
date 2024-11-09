@@ -1,13 +1,13 @@
 import React from 'react'
 
 export const metadata = {
-    title: "About | Feastify"
-}
+  title: "Search-Ingredient | Feastify",
+};
 
 export default function layout({ children }) {
-    return (
-        <div>
-            {children}
-        </div>
-    )
+  return (
+    <div>
+      {children}
+    </div>
+  )
 }

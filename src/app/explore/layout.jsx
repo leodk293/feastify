@@ -1,13 +1,15 @@
 import React from 'react'
 
 export const metadata = {
-    title: "create-comment | Feastify"
-}
+    title: "Explore | Feastify",
+};
 
-export default function layout({ children }) {
+const layout = ({ children }) => {
     return (
         <div>
             {children}
         </div>
     )
 }
+
+export default layout

@@ -35,7 +35,7 @@ export default function Faq() {
                 <button
                     onClick={() => setShowRes2(!showRes2)}
                     className=' flex flex-row font-bold text-xl justify-between md:text-2xl'>
-                    <h1>Who are the author of Feastify</h1>
+                    <h1>Who is the author of Feastify</h1>
                     {!showRes2 ?
                         <ChevronDown size={28} strokeWidth={1.5} />
                         :

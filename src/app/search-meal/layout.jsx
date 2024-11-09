@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const metadata = {
-    title: "Search | Feastify",
+    title: "Search-Meal | Feastify",
 }; 
 
 export default function layout({ children }) {

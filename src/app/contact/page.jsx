@@ -1,7 +1,7 @@
 'use client';
 import React from 'react'
 import { useState } from 'react'
-import { SendHorizontal, Phone, Mail } from 'lucide-react';
+import { SendHorizontal, Phone, Mail, CircleUser } from 'lucide-react';
 
 export default function Page() {
     const [result, setResult] = useState("");
@@ -12,7 +12,7 @@ export default function Page() {
         setResult("Sending....");
         const formData = new FormData(event.target);
 
-        formData.append("access_key", process.env.WEB3FORMS_KEY);
+        formData.append("access_key", process.env.NEXT_PUBLIC_WEB3_KEY);
 
         const response = await fetch("https://api.web3forms.com/submit", {
             method: "POST",
@@ -32,7 +32,11 @@ export default function Page() {
 
     return (
         <main className='flex flex-col items-center mx-3 md:mx-0'>
-            <h1 className='text-4xl font-bold '>🍰 Contact Us 🍰</h1>
+            
+            <div className=' flex flex-row gap-2'>
+                <h1 className=' text-3xl font-bold'>Contact Us</h1>
+                <CircleUser className=' self-center' size={36} color="#0a0000" />
+            </div>
 
             <div className=' flex flex-wrap mt-10 gap-10 justify-center'>
 
@@ -69,7 +73,7 @@ export default function Page() {
                         </button>
 
                     </form>
-                    <span>{result}</span>
+                    <span className=' font-semibold text-green-900'>{result}</span>
 
                 </div>
 

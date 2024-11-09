@@ -59,7 +59,7 @@ export default function SearchResults() {
   return (
     <main className="flex flex-col items-center mx-3 md:mx-0">
       <div>
-        <h1 className="text-3xl font-extrabold text-red-950 mt-10">Search Results for {mealName}</h1>
+        <h1 className="text-3xl font-extrabold text-red-950 mt-10">Search Results for : {mealName}</h1>
         <div className=" hidden md:w-[69rem] h-[2px] bg-red-950 md:block"></div>
       </div>
 
@@ -94,7 +94,7 @@ export default function SearchResults() {
             )
             :
             (
-              <p className="text-orange-800 text-2xl font-semibold mt-10">No results found for {mealName}.</p>
+              <p className="text-orange-800 text-2xl font-bold mt-[60px] md:h-[10rem]">No results found for {mealName}.</p>
             )}
     </main>
   );
