@@ -56,17 +56,25 @@ const Header = async () => {
 
             <div className=' flex flex-wrap self-center justify-center gap-8'>
                 <div className='self-center flex flex-row gap-5'>
+
+                    <Link
+                        className=' self-center text-xl font-bold hover:text-orange-700 duration-200 md:text-2xl'
+                        href={'/'}
+                    >
+                        Home
+                    </Link>
                     <Link
                         href={'/explore'}
                     >
-                        <h1 className=' text-2xl font-bold hover:text-orange-700 duration-200'>Explore</h1>
+                        <h1 className=' text-xl font-bold hover:text-orange-700 duration-200 md:text-2xl'>Explore</h1>
                     </Link>
                     <Link
-                        className=' self-center text-2xl font-bold hover:text-orange-700 duration-200'
+                        className=' self-center text-xl font-bold hover:text-orange-700 duration-200 md:text-2xl'
                         href={'/contact'}
                     >
                         Contact
                     </Link>
+
                 </div>
 
                 {!session?.user

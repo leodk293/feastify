@@ -62,7 +62,7 @@ export default function Page() {
     return (
         <main className="flex flex-col items-center mx-3 md:mx-0">
             <div className=' flex flex-col gap-1'>
-                <h1 className="text-3xl font-extrabold text-red-950 mt-10">Results for meals containing &apos; {ingredientName} &apos; like main ingredient </h1>
+                <h1 className="text-xl font-extrabold text-red-950 mt-10 md:text-3xl">Results for meals containing &apos; {ingredientName} &apos; like ingredient </h1>
                 <div className=" hidden md:w-[69rem] h-[2px] bg-red-950 md:block"></div>
             </div>
 
@@ -86,9 +86,9 @@ export default function Page() {
                                                 alt={meal.strMeal}
                                                 width={200}
                                                 height={100}
-                                                className="border border-orange-950 rounded-[5px] object-cover"
+                                                className="border border-orange-950 w-[150px] rounded-[5px] object-cover md:w-[200px]"
                                             />
-                                            <p className="w-[200px] text-[17px] font-semibold">{meal.strMeal}</p>
+                                            <p className="w-[150px] text-[17px] font-semibold md:w-[200px]">{meal.strMeal}</p>
                                         </div>
                                     </Link>
                                 ))}

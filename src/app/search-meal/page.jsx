@@ -83,9 +83,9 @@ export default function SearchResults() {
                         alt={meal.strMeal}
                         width={200}
                         height={100}
-                        className="border border-orange-950 rounded-[5px] object-cover"
+                        className="border border-orange-950 w-[150px] rounded-[5px] object-cover md:w-[200px]"
                       />
-                      <p className="w-[200px] text-[17px] font-semibold">{meal.strMeal}</p>
+                      <p className="w-[150px] text-[17px] font-semibold md:w-[200px]">{meal.strMeal}</p>
                     </div>
                   </Link>
                 ))}

@@ -34,18 +34,18 @@ const Footer = () => {
 
             <div className=' hidden mt-5 w-[60rem] h-[1px] bg-red-950 rounded-[10px] md:block'></div>
 
-            <div className=' font-semibold flex flex-wrap text-xl mt-5 gap-5 md:gap-[80px]'>
-                <p className=' self-center'>© {year} <span className=' font-extrabold'>Feastify</span>, All rights reserved</p>
+            <div className=' font-bold flex flex-wrap text-xl mt-5 gap-5 md:gap-[80px]'>
+                <p className=' self-center'>© {year} <span className=' text-orange-950 font-extrabold'>Feastify</span>, All rights reserved</p>
 
 
-                <div className=' flex flex-row gap-5'>
+                <div className=' flex font-bold flex-row gap-5'>
                     <Link href={'/'}>Linkedin</Link>
                     <Link href={'/'}>Facebook</Link>
                     <Link href={'/'}>Twitter</Link>
                 </div>
 
 
-                <div className=' self-center flex flex-row gap-5'>
+                <div className=' self-center font-bold flex flex-row gap-5'>
                     <Link href={'/contact'}>Contact</Link>
                     <Link href={'/about'}>About</Link>
                 </div>

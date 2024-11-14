@@ -6,6 +6,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Faq from "./components/faq/Faq";
+import { Roboto } from '@next/font/google';
+import { Inter } from "@next/font/google";
+
+const roboto = Roboto({
+  weight: '700',      
+  subsets: ['greek'], 
+});
+
 
 export default function Home() {
   const router = useRouter();
@@ -105,7 +113,7 @@ export default function Home() {
   return (
     <main className=" flex flex-col items-center mx-3 md:mx-0">
 
-      <div className="flex flex-row justify-center">
+      <div className="flex flex-row gap-5 justify-center">
 
         <Image
           src={ramen}
@@ -116,9 +124,12 @@ export default function Home() {
         />
 
         <div className=" flex flex-col items-center gap-5">
-          <h1 className=" text-4xl font-bold text-center">Welcome to Feastify</h1>
+          <h1 className={`${roboto.className} text-4xl text-center`}>Welcome to Feastify</h1>
 
-          <p className=" font-semibold text-[18px] leading-7 text-center w-auto md:w-[50rem]">Feastify, your ultimate kitchen companion! Discover a world of delicious recipes
+          <p
+            className={` font-semibold text-[17px] leading-7 text-left w-auto md:w-[50rem] md:text-center md:text-[18px]`}
+          >
+            Feastify, your ultimate kitchen companion! Discover a world of delicious recipes
             and helpful cooking tips tailored just for you. Signin and explore, cook, and share your culinary journey by leaving
             comments and connecting with other food lovers!
           </p>
@@ -211,7 +222,7 @@ export default function Home() {
 
       </div>
 
-      <h1 className=" text-3xl text-center mt-[80px] font-extrabold text-red-950">Discover some tasty meals 😋</h1>
+      <h1 className=" text-2xl text-center mt-[80px] font-extrabold text-red-950 md:text-3xl">Discover some tasty meals 😋</h1>
 
       <div className=" hidden md:w-[68rem] h-[1px] rounded-[25px] bg-red-950 mt-5 md:block"></div>
 
@@ -236,11 +247,11 @@ export default function Home() {
                         alt={meal.strMeal}
                         width={200}
                         height={100}
-                        className=" border border-orange-950 rounded-[5px] object-cover"
+                        className=" border border-orange-950 w-[150px] rounded-[5px] object-cover md:w-[200px]"
 
                       />
 
-                      <p className="w-[200px] text-[17px] font-semibold">{meal.strMeal}</p>
+                      <p className="w-[150px] text-[17px] font-semibold md:w-[200px]">{meal.strMeal}</p>
 
                     </div>
                   </Link>
@@ -256,7 +267,7 @@ export default function Home() {
 
       <div className=" mt-[120px] flex flex-col gap-5 w-auto items-center md:w-[70rem]">
 
-        <h1 className=" font-extrabold text-red-950 text-3xl text-center">Browse among severals ingredients</h1>
+        <h1 className=" font-extrabold text-red-950 text-2xl text-center md:text-3xl">Browse among severals ingredients</h1>
 
         <div className="flex flex-wrap justify-center gap-5">
 
@@ -275,6 +286,7 @@ export default function Home() {
                     alt={ingredient.strIngredient}
                     width={150}
                     height={100}
+                    className=" object-cover w-[100px] md:w-[150px]"
                   />
 
                   <p className="text-[16px] text-center font-semibold ">{ingredient.strIngredient}</p>

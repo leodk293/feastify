@@ -78,7 +78,7 @@ export default function Page() {
                 </div>
 
                 <div className=' flex flex-col gap-5 md:mt-10 '>
-                    <h1 className=' text-4xl underline underline-offset-[10px] font-bold'>Let&apos;s stay in touch</h1>
+                    <h1 className=' text-3xl underline underline-offset-[10px] font-bold md:text-4xl'>Let&apos;s stay in touch</h1>
                     <div className=' flex flex-row mt-5 gap-2'>
                         <Phone size={28} strokeWidth={1.75} />
                         <p className=' self-center text-xl font-bold'>+212 0619965635</p>

@@ -149,11 +149,11 @@ export default function Page({ params }) {
                                 alt={mealsInfos.data[`strIngredient${ingredient}`]}
                                 width={150}
                                 height={100}
-                                className=' object-cover'
+                                className=' object-cover w-[100px] md:w-[150px]'
                               />
                             </div>
 
-                            <p className='text-[16px] w-[180px] font-semibold'>
+                            <p className='text-[16px] w-[140px] font-semibold md:w-[180px]'>
                               {mealsInfos.data[`strIngredient${ingredient}`]} / <span className=' font-bold text-orange-800'>{mealsInfos.data[`strMeasure${ingredient}`]}</span>
                             </p>
                           </div>

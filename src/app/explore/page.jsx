@@ -96,33 +96,35 @@ const Page = () => {
         <main className="flex flex-col items-center mx-3 md:mx-0">
             <div className="flex flex-col gap-3">
 
-                <div className=' flex flex-wrap gap-10'>
+                <div className=' flex flex-wrap gap-2 md:gap-10'>
 
-                    <h1 className=' text-2xl self-center font-bold'>Filter Meals :</h1>
+                    <h1 className=' text-xl self-center font-bold md:text-2xl'>Filter Meals :</h1>
 
-                    <select
-                        className="text-[17px] font-semibold outline-none border border-transparent rounded-[5px] cursor-pointer px-5 py-2 bg-orange-900 text-white"
-                        onChange={(e) => fetchFilteredMealsByCategory(e.target.value)}
-                    >
-                        <option value="">Select a category</option>
-                        {categories.map((category) => (
-                            <option value={category} key={nanoid(10)}>
-                                {category}
-                            </option>
-                        ))}
-                    </select>
+                    <div className=' flex flex-row gap-10'>
+                        <select
+                            className="text-[15px] self-center font-semibold outline-none border border-transparent rounded-[5px] cursor-pointer px-5 py-2 bg-orange-900 text-white md:text-[17px]"
+                            onChange={(e) => fetchFilteredMealsByCategory(e.target.value)}
+                        >
+                            <option value="">Select a category</option>
+                            {categories.map((category) => (
+                                <option value={category} key={nanoid(10)}>
+                                    {category}
+                                </option>
+                            ))}
+                        </select>
 
-                    <select
-                        className="text-[17px] font-semibold outline-none border border-transparent rounded-[5px] cursor-pointer px-5 py-2 bg-orange-900 text-white"
-                        onChange={(e) => fetchFilteredMealsByArea(e.target.value)}
-                    >
-                        <option value="">Select an area</option>
-                        {areas.map((area) => (
-                            <option value={area} key={nanoid(10)}>
-                                {area}
-                            </option>
-                        ))}
-                    </select>
+                        <select
+                            className="text-[15px] self-center font-semibold outline-none border border-transparent rounded-[5px] cursor-pointer px-5 py-2 bg-orange-900 text-white md:text-[17px]"
+                            onChange={(e) => fetchFilteredMealsByArea(e.target.value)}
+                        >
+                            <option value="">Select an area</option>
+                            {areas.map((area) => (
+                                <option value={area} key={nanoid(10)}>
+                                    {area}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
 
                 </div>
 
@@ -145,9 +147,9 @@ const Page = () => {
                                         width={200}
                                         height={100}
                                         alt={meal.strMeal}
-                                        className="border border-orange-950 rounded-[5px] object-cover"
+                                        className="border border-orange-950 w-[150px] rounded-[5px] object-cover md:w-[200px]"
                                     />
-                                    <p className='w-[200px] text-[17px] font-semibold'>{meal.strMeal}</p>
+                                    <p className='w-[150px] text-[17px] font-semibold md:w-[200px]'>{meal.strMeal}</p>
                                 </div>
                             </Link>
                         ))}

@@ -88,9 +88,11 @@ export default function Page() {
                                                         alt={ingredient.strIngredient}
                                                         width={150}
                                                         height={100}
-                                                        className=' object-cover'
+                                                        className=" object-cover w-[100px] md:w-[150px]"
                                                     />
+
                                                     <p className="text-[16px] text-center font-semibold ">{ingredient.strIngredient}</p>
+
                                                 </div>
 
                                             </Link>

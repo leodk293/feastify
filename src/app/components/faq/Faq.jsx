@@ -24,12 +24,12 @@ export default function Faq() {
                         <ChevronUp size={28} strokeWidth={1.5} />
                     }
                 </button>
-                <p className={` ${!showRes1 ? 'hidden' : 'block'} font-semibold text-xl`}>Featify is a website where you will find out several recipes and tips according to your taste,
+                <p className={` ${!showRes1 ? 'hidden' : 'block'} font-semibold text-[16px] md:text-xl`}>Featify is a website where you will find out several recipes and tips according to your taste,
                     the fabulous place for the passionnate of cook
                 </p>
             </div>
 
-            <div className=' hidden w-[63rem] h-[1px] bg-black md:block'></div>
+            <div className='  w-[20rem] h-[1px] bg-black md:w-[63rem]'></div>
 
             <div className=' flex flex-col gap-3 font-bold text-xl justify-between md:text-2xl'>
                 <button
@@ -42,12 +42,12 @@ export default function Faq() {
                         <ChevronUp size={28} strokeWidth={1.5} />
                     }
                 </button>
-                <p className={` ${!showRes2 ? 'hidden' : 'block'} font-semibold text-xl`}>Featify has been coded by someone passionnate by computer science, animes, sport, videos games and cooking,
-                    for any further informations, contact : <span className='font-extrabold'>aboubatraore04@gmail.com</span> or click here : <Link href={'/'}>portfolio</Link>
+                <p className={` ${!showRes2 ? 'hidden' : 'block'} font-semibold text-[16px] md:text-xl`}>Featify has been coded by someone passionnate by computer science, animes, sport, videos games and cooking,
+                    for any further informations, contact : <span className='font-extrabold'>aboubatraore04@gmail.com</span> or click here : <Link className=' font-bold' href={'/'}>portfolio</Link>
                 </p>
             </div>
 
-            <div className=' hidden w-[63rem] h-[1px] bg-black md:block'></div>
+            <div className='  w-[20rem] h-[1px] bg-black md:w-[63rem]'></div>
 
             <div className=' flex flex-col gap-3 font-bold text-xl justify-between md:text-2xl'>
                 <button
@@ -60,7 +60,7 @@ export default function Faq() {
                         <ChevronUp size={28} strokeWidth={1.5} />
                     }
                 </button>
-                <p className={` ${!showRes3 ? 'hidden' : 'block'} font-semibold text-xl`}>Feastify is absoluetly free, signup, leave us a comment</p>
+                <p className={` ${!showRes3 ? 'hidden' : 'block'} font-semibold text-[16px] md:text-xl`}>Feastify is absoluetly free, signup, leave us a comment</p>
             </div>
 
         </main>
