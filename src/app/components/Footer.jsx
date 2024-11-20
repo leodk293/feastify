@@ -39,9 +39,9 @@ const Footer = () => {
 
 
                 <div className=' flex font-bold flex-row gap-5'>
-                    <Link href={'/'}>Linkedin</Link>
-                    <Link href={'/'}>Facebook</Link>
-                    <Link href={'/'}>Twitter</Link>
+                    <Link target='_blank' href={'https://www.linkedin.com/in/aboubacar-traore-495736252/'}>Linkedin</Link>
+                    <Link target='_blank' href={'https://www.facebook.com/profile.php?id=100092315485742'}>Facebook</Link>
+                    <Link target='_blank' href={'https://x.com/Aboubac48530295'}>Twitter</Link>
                 </div>
 
 

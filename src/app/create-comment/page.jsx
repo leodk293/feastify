@@ -57,20 +57,6 @@ export default function Page() {
     }
   };
 
-  /*async function handleDelete(postId) {
-    try {
-      // Delete the post with the matching id
-      await db.delete(postsTable).where(postsTable.id.eq(postId));
-
-      // Update the posts state to remove the deleted post from the UI
-      setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
-
-    } catch (error) {
-      console.error("Error deleting post:", error);
-      alert("There was an error deleting your comment.");
-    }
-  }*/
-
   async function handleDelete(postId) {
     if (!session) {
       alert("You need to be signed in to delete a post.");
@@ -154,8 +140,6 @@ export default function Page() {
                 <h1 className='font-bold text-xl underline underline-offset-2'>{post.title}</h1>
                 <p className=' font-semibold'>{post.content}</p>
 
-
-                {/* Show delete button only if the post belongs to the logged-in user */}
                 {session && post.userId === session.email && (
                   <button
                     className='text-white self-center bg-red-500 rounded-[5px] w-[100px] py-2 font-semibold hover:bg-red-700 duration-200'

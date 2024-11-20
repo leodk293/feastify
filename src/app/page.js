@@ -17,6 +17,7 @@ const roboto = Roboto({
 
 export default function Home() {
   const router = useRouter();
+  
   const [mealName, setMealName] = useState("");
   const [ingredientName, setIngredientName] = useState("");
 
@@ -37,8 +38,6 @@ export default function Home() {
       setIngredientName('');
     }
   }
-
-
 
   const [meals, setMeals] = useState({
     error: false,
@@ -148,13 +147,13 @@ export default function Home() {
       <div className=" flex flex-col gap-2 mt-10">
         <h1 className="text-2xl text-orange-950 font-bold">Follow us :</h1>
         <div className=" flex flex-row gap-2">
-          <Link className=" border border-transparent p-2 rounded-[5px] bg-orange-900 hover:bg-orange-800 duration-200" href={'/'}>
+          <Link target="_blank" className=" border border-transparent p-2 rounded-[5px] bg-orange-900 hover:bg-orange-800 duration-200" href={'https://x.com/Aboubac48530295'}>
             <Twitter color='#fff' size={30} strokeWidth={1.5} />
           </Link>
-          <Link className=" border border-transparent p-2 rounded-[5px] bg-orange-900 hover:bg-orange-800 duration-200" href={'/'}>
+          <Link target="_blank" className=" border border-transparent p-2 rounded-[5px] bg-orange-900 hover:bg-orange-800 duration-200" href={'https://www.facebook.com/profile.php?id=100092315485742'}>
             <Facebook color='#fff' size={30} strokeWidth={1.5} />
           </Link>
-          <Link className=" border border-transparent p-2 rounded-[5px] bg-orange-900 hover:bg-orange-800 duration-200" href={'/'}>
+          <Link target="_blank" className=" border border-transparent p-2 rounded-[5px] bg-orange-900 hover:bg-orange-800 duration-200" href={'https://www.linkedin.com/in/aboubacar-traore-495736252/'}>
             <Linkedin color='#fff' size={30} strokeWidth={1.5} />
           </Link>
         </div>
