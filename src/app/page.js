@@ -115,7 +115,7 @@ export default function Home() {
         />
 
         <div className=" flex flex-col items-center gap-5">
-          <h1 className={` text-2xl text-center md:text-4xl `}>Welcome to Feastify</h1>
+          <h1 className={` text-2xl font-bold text-center md:text-4xl `}>Welcome to Feastify</h1>
 
           <p
             className={` font-semibold text-[17px] leading-7 text-left w-auto md:w-[50rem] md:text-center md:text-[18px]`}
