@@ -115,7 +115,7 @@ export default function Home() {
         />
 
         <div className=" flex flex-col items-center gap-5">
-          <h1 className={` text-2xl font-bold text-center md:text-4xl `}>Welcome to Feastify</h1>
+          <h1 className={` text-2xl font-extrabold text-red-950 text-center md:text-4xl `}>Welcome to Feastify</h1>
 
           <p
             className={` font-semibold text-[17px] leading-7 text-left w-auto md:w-[50rem] md:text-center md:text-[18px]`}
@@ -233,7 +233,7 @@ export default function Home() {
                     <div
                       className=" flex flex-col gap-2 hover:brightness-75 duration-200"
                     >
-                      <Image
+                      <img
                         src={meal.strMealThumb}
                         alt={meal.strMeal}
                         width={200}
