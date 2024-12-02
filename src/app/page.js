@@ -9,7 +9,7 @@ import Faq from "./components/faq/Faq";
 
 export default function Home() {
   const router = useRouter();
-  
+
   const [mealName, setMealName] = useState("");
   const [ingredientName, setIngredientName] = useState("");
 
@@ -106,13 +106,18 @@ export default function Home() {
 
       <div className="flex flex-row gap-5 justify-center">
 
-        <Image
+         <Image
           src={ramen}
           alt="RAMEN IMAGE"
           width={150}
           height={50}
           className=" object-cover self-center hidden md:block"
-        />
+        /> 
+        {/* <img
+          src={ramen}
+          alt="RAMEN IMAGE"
+          className=" object-cover self-center hidden md:block"
+        /> */}
 
         <div className=" flex flex-col items-center gap-5">
           <h1 className={` text-2xl font-extrabold text-red-950 text-center md:text-4xl `}>Welcome to Feastify</h1>

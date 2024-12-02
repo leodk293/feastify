@@ -94,7 +94,7 @@ export default function Page({ params }) {
                 <div
                   className='flex flex-col shadow border border-transparent rounded-[10px] p-10 bg-[#f8ddac14] items-center gap-5'
                 >
-                  <Image
+                  <img
                     src={mealsInfos.data.strMealThumb}
                     width={400}
                     height={200}
@@ -144,7 +144,7 @@ export default function Page({ params }) {
                             key={nanoid(10)}
                           >
                             <div className='border border-transparent self-center shadow rounded-[10px] bg-[#ffd69d2e] p-2'>
-                              <Image
+                              <img
                                 src={displayIngredients(mealsInfos.data[`strIngredient${ingredient}`])}
                                 alt={mealsInfos.data[`strIngredient${ingredient}`]}
                                 width={150}

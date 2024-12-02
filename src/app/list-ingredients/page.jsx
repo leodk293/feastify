@@ -83,7 +83,7 @@ export default function Page() {
                                                 <div
                                                     className=" flex flex-col items-center gap-3 border border-transparent px-5 py-2 rounded-[5px] shadow bg-[#f8deac2b] "
                                                 >
-                                                    <Image
+                                                    <img
                                                         src={displayIngredientsImage(ingredient.strIngredient)}
                                                         alt={ingredient.strIngredient}
                                                         width={150}

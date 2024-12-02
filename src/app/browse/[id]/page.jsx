@@ -83,7 +83,7 @@ const Page = ({ params }) => {
                                     key={meal.idMeal}
                                 >
                                     <div className="flex flex-col gap-2 hover:brightness-75 duration-200">
-                                        <Image
+                                        <img
                                             src={meal.strMealThumb}
                                             width={200}
                                             height={100}

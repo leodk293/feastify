@@ -43,7 +43,7 @@ export default function Faq() {
                     }
                 </button>
                 <p className={` ${!showRes2 ? 'hidden' : 'block'} font-semibold text-[16px] md:text-xl`}>Featify has been coded by someone passionnate by computer science, animes, sport, videos games and cooking,
-                    for any further informations, contact : <span className='font-extrabold'>aboubatraore04@gmail.com</span> or click here : <Link className=' font-bold' href={'/'}>portfolio</Link>
+                    for any further informations, contact : <span className='font-extrabold'>aboubatraore04@gmail.com</span> or click here : <Link className=' font-bold' href={'/contact'}>contact</Link>
                 </p>
             </div>
 
