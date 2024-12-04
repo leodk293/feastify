@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import Loader from '../../components/Loader';
 
 const Page = ({ params }) => {
     const [browsedMeals, setBrowsedMeals] = useState({
@@ -66,9 +67,7 @@ const Page = ({ params }) => {
                     Something went wrong, try again
                 </p>
             ) : browsedMeals.loading ? (
-                <p className="text-orange-800 mt-5 text-3xl font-bold text-center">
-                    Loading...
-                </p>
+                <Loader/>
             ) : (
                 browsedMeals.data ? (
                     <div className="flex flex-col items-center gap-5">

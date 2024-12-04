@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
+import Loader from '../components/Loader';
 
 export default function Page() {
 
@@ -62,7 +63,7 @@ export default function Page() {
         <main className="flex flex-col items-center mx-3 md:mx-0">
             <h1 className=' text-2xl font-bold md:text-4xl'>🥩Total Ingredients : {listIngredients.data.length}</h1>
             {listIngredients.loaing === true ?
-                <p className='text-orange-800 h-[30rem] text-3xl font-bold text-center mt-10'>Loading...</p>
+                <Loader/>
                 :
                 listIngredients.error === true ?
                     <p className='text-red-800 h-[30rem] text-3xl font-bold text-center mt-10'>Something went wrong</p>

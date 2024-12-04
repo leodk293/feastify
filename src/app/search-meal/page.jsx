@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
 import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Loader from "../components/Loader";
 
 function MealsContent() {
   const searchParams = useSearchParams();
@@ -37,7 +38,9 @@ function MealsContent() {
 
     try {
       const response = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(mealName)}`
+        `https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(
+          mealName
+        )}`
       );
       if (!response.ok) {
         throw new Error("An error has occurred");
@@ -68,9 +71,11 @@ function MealsContent() {
       </div>
 
       {meals.loading ? (
-        <p className="text-orange-800 text-3xl font-bold text-center mt-10">Loading...</p>
+        <Loader />
       ) : meals.error ? (
-        <p className="text-red-800 text-3xl font-bold text-center mt-10">Something went wrong, please try again.</p>
+        <p className="text-red-800 text-3xl font-bold text-center mt-10">
+          Something went wrong, please try again.
+        </p>
       ) : meals.data && meals.data.length > 0 ? (
         <div className="flex flex-wrap w-auto justify-center gap-5 mt-10 md:w-[70rem]">
           {meals.data.map((meal) => (
@@ -83,7 +88,9 @@ function MealsContent() {
                   height={100}
                   className="border border-orange-950 w-[150px] rounded-[5px] object-cover md:w-[200px]"
                 />
-                <p className="w-[150px] text-[17px] font-semibold md:w-[200px]">{meal.strMeal}</p>
+                <p className="w-[150px] text-[17px] font-semibold md:w-[200px]">
+                  {meal.strMeal}
+                </p>
               </div>
             </Link>
           ))}
@@ -99,7 +106,11 @@ function MealsContent() {
 
 export default function SearchResults() {
   return (
-    <Suspense fallback={<p className="text-center mt-10 text-2xl">Loading search results...</p>}>
+    <Suspense
+      fallback={
+        <p className="text-center mt-10 text-2xl">Loading search results...</p>
+      }
+    >
       <MealsContent />
     </Suspense>
   );

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Faq from "./components/faq/Faq";
+import Loader from './components/Loader'
 
 export default function Home() {
   const router = useRouter();
@@ -113,12 +114,7 @@ export default function Home() {
           height={50}
           className=" object-cover self-center hidden md:block"
         /> 
-        {/* <img
-          src={ramen}
-          alt="RAMEN IMAGE"
-          className=" object-cover self-center hidden md:block"
-        /> */}
-
+        
         <div className=" flex flex-col items-center gap-5">
           <h1 className={` text-2xl font-extrabold text-red-950 text-center md:text-4xl `}>Welcome to Feastify</h1>
 
@@ -225,9 +221,11 @@ export default function Home() {
       <div className=" mt-10 flex flex-col gap-5 w-auto items-center md:w-[70rem]">
 
         {meals.loading === true ?
-          <p className=" text-orange-800 text-3xl font-bold text-center mt-10">Loading...</p> :
+          <Loader/>
+          :
           meals.error === true ?
-            <p className=" text-red-800 text-3xl font-bold text-center mt-10">Something went wrong, check that you are connected</p> :
+            <p className=" text-red-800 text-3xl font-bold text-center mt-10">Something went wrong, check that you are connected</p>
+             :
 
             <div
               className=" flex flex-wrap justify-center gap-5"

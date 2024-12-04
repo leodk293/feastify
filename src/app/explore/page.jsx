@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import Image from 'next/image';
 import Link from 'next/link';
+import Loader from '../components/Loader';
 
 const Page = () => {
     const [areas, setAreas] = useState([]);
@@ -136,7 +137,7 @@ const Page = () => {
                 {filteredMeals.error ? (
                     <p className='text-red-800 text-3xl font-bold text-center mt-10'>Something went wrong, try again</p>
                 ) : filteredMeals.loading ? (
-                    <p className="text-orange-800 mt-5 text-3xl font-bold text-center">Loading...</p>
+                   <Loader/>
                 ) : (
                     <div className="flex flex-wrap mt-5 w-auto justify-center gap-5 md:w-[70rem]">
                         {filteredMeals.data?.map((meal) => (

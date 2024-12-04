@@ -4,6 +4,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Loader from '../components/Loader';
 
 function MealsContent() {
     const searchParams = useSearchParams();
@@ -66,7 +67,7 @@ function MealsContent() {
             </div>
 
             {ingredients.loading ? (
-                <p className="text-orange-800 text-3xl font-bold text-center mt-10">Loading...</p>
+                <Loader/>
             ) : ingredients.error ? (
                 <p className="text-red-800 text-3xl font-bold text-center mt-10">Something went wrong, please try again.</p>
             ) : ingredients.data && ingredients.data.length > 0 ? (

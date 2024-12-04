@@ -5,6 +5,7 @@ import Image from 'next/image';
 import ReadMore from '../../components/readMore';
 import { Youtube } from 'lucide-react';
 import { nanoid } from 'nanoid';
+import Loader from '../../components/Loader';
 
 export default function Page({ params }) {
   const [mealsInfos, setMealsInfo] = useState({
@@ -81,7 +82,7 @@ export default function Page({ params }) {
           :
           mealsInfos.loading === true
             ?
-            <p className="text-orange-800 mt-5 text-3xl font-bold text-center">Loading...</p>
+            <Loader/>
             :
             (
               mealsInfos.data &&

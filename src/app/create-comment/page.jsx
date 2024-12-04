@@ -99,7 +99,7 @@ export default function Page() {
     <main className='flex flex-col items-center mx-3 md:mx-0'>
       <div className='flex flex-col gap-4'>
         <div className='flex flex-row gap-2'>
-          <h1 className='self-center text-3xl font-bold'>Leave us a comment</h1>
+          <h1 className='self-center text-3xl font-bold'>Leave us a comment ({posts.length} comment{posts.length > 1 ?"s":''})</h1>
           <MessageCircle className='self-center' size={32} color="#000" />
         </div>
 
@@ -133,7 +133,7 @@ export default function Page() {
 
       <div className='flex flex-wrap gap-5 mt-10 justify-center'>
         {posts.length !== 0 ? (
-          <div className='flex flex-wrap justify-center gap-5'>
+          <div className='flex flex-wrap w-auto justify-center gap-5 md:w-[60rem]'>
             {posts.map((post) => (
               <div className='flex flex-col w-auto gap-2 p-5 rounded-[5px] shadow bg-[#fcdca137] md:w-[25rem]' key={post.id}>
                 <h1 className=' font-bold'>From : <span className=' text-[15px] font-extrabold'>{post.userId}</span></h1>
